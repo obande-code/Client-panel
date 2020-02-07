@@ -23,11 +23,11 @@ export class RegisterComponent implements OnInit {
    onSubmit(){
      this.authService.register(this.email , this.password)
      .then(res =>{
-       this.flashMessages.show('You are registered abd logged in', {cssClass : 'alert-success', timeout:4000});
+       this.flashMessages.show('You are registered abd logged in', {cssClass : 'alert-success', timeout:10000});
        this.router.navigate(['/'])
      })
      .catch(err =>{
-       this.flashMessages.show(err.message, {cssClass : 'alert-danger', timeout : 4000});
+       this.flashMessages.show(err.message, {cssClass : 'alert-danger', timeout : 10000});
      })
    }
 }
