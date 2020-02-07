@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-md-6">
+        <a [routerLink]="['/']"  class="btn btn-line">
+            <i class="fa fa-arrow-circle-o-left">Back Dashboard</i>
+        </a>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+<div class="card">
+    <div class="card-header">
+        Add Clients
+    </div>
+    <div class="card-body">
+        <form #clientForm= "ngForm"(ngSubmit)="onSubmit(clientForm)">
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text"
+                class="form-control"
+                name="clientFirstName"
+                [(ngModel)]="clientForm.clientFirstName"
+                #clientFirstName ="ngModel"
+                minlength="4"
+                required
+                >
+                 <small *ngIf="clientFirstName.invalid && (clientFirstName.dirty || clientFirstName.touched || clientFirstName.errors.minlength)"
+                 class="text-danger"> First name  required, must be at least 4 characters long </small>
+                 
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text"
+                class="form-control"
+                name="clientlastNameVar"
+                [(ngModel)]="clientForm.clientlastNameVar"
+                #clientlastNameVar ="ngModel"
+                minlength="4"
+                required
+                >
+                 <small *ngIf="clientlastNameVar.invalid && (clientlastNameVar.dirty || clientlastNameVar.touched || clientlastNameVar.errors?.minlength)"
+                 class="text-danger"> Last name  required, must be at least 4 characters long </small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email"
+                class="form-control"
+                placeholder="type@gmail.com"
+                name="emailVar"
+                required
+            
+                >
+    
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text"
+                class="form-control"
+                name="phoneVar"
+                [(ngModel)]="clientForm.phoneVar"
+                #phoneVar ="ngModel"
+                minlength="10"
+                required
+                >
+                 <small *ngIf="phoneVar.invalid && (phoneVar.dirty || phoneVar.touched || phoneVar.errors?.minlength)"
+                 class="text-danger"> Phone Number required at least 10 digits </small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">balance</label>
+                <input type="number"
+                class="form-control"
+                name="balance"
+                [(ngModel)]="client.balance"
+                #clientBalance = "ngModel"
+                [disabled] = "disableBalanceOnAdd"
+            
+                >
+    
+            </div>
+            <input type="submit" value="submit" class="btn btn-primary btn-block">
+
+        </form>
+    </div>
+</div>
