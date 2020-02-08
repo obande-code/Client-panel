@@ -7,19 +7,19 @@
 <table *ngIf="clients?.length > 0; else noClients" class="table table-striped">
     <thead class="thead-invrese">
         <tr>
-            <th>Name </th>
-            <th>Email </th>
-            <th>Phone </th>
-            <th>Balance </th>
+            <th scope="col">Name </th>
+            <th scope="col">Email </th>
+            <th scope="col">Phone </th>
+            <th scope="col">Balance </th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let client of clients">
-            <td>{{client.firstname}} {{client.lastname}}</td>
-            <td>{{client.email}}</td>
-            <td>{{client.phone}}</td>
-            <td>{{client.balance | currency:"USD":"symbol"}}</td>
-            <td><a [routerLink]=" " class="btn btn-secondary btn-sm" ><i class="fa fa-arrow-circle-o-right"> Details</i></a></td>
+            <td scope="row">{{client.firstname}} {{client.lastname}}</td>
+            <td scope="row">{{client.email}}</td>
+            <td scope="row">{{client.phone}}</td>
+            <td scope="row">{{client.balance | currency:"USD":"symbol"}}</td>
+            <td scope="row"><a [routerLink]=" " class="btn btn-secondary btn-sm" ><i class="fa fa-arrow-circle-o-right"> Details</i></a></td>
             
         </tr>
         
