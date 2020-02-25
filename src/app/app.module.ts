@@ -10,6 +10,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BambiService } from "../app/file/bambi.service";
 import { AuthGuard } from "./Auguard/auth.service";
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 import { AppComponent } from './app.component';
@@ -28,6 +30,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRountingModule } from './app-rounting.module';
 import { from } from 'rxjs';
 import { AuthService } from './services/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -50,11 +53,13 @@ import { AuthService } from './services/auth.service';
     FlashMessagesModule.forRoot(),
     FormsModule,
     AppRountingModule,
-    AngularFireModule.initializeApp(environment.firebase, 'ClientPanel'),
+    AngularFireModule.initializeApp(environment.firebase, 'clientpanel'),
     AngularFireAnalyticsModule, // dynamically imports firebase/analytics
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule 
+    AngularFireStorageModule,
+    NgxSpinnerModule,
+    AngularFireDatabaseModule
   ],
   providers:  [BambiService,AuthGuard,AuthService],
   bootstrap: [AppComponent]

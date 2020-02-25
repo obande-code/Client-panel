@@ -4,27 +4,34 @@
         <h4 class="text-right text-secondary">{{totalowed | currency : "USD":"symbol"}}</h4>
     </div>
 </div>
-<table *ngIf="clients?.length > 0; else noClients" class="table table-striped">
-    <thead class="thead-invrese">
-        <tr>
-            <th scope="col">Name </th>
-            <th scope="col">Email </th>
-            <th scope="col">Phone </th>
-            <th scope="col">Balance </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let client of clients">
-            <td scope="row">{{client.firstname}} {{client.lastname}}</td>
-            <td scope="row">{{client.email}}</td>
-            <td scope="row">{{client.phone}}</td>
-            <td scope="row">{{client.balance | currency:"USD":"symbol"}}</td>
-            <td scope="row"><a [routerLink]=" " class="btn btn-secondary btn-sm" ><i class="fa fa-arrow-circle-o-right"> Details</i></a></td>
-            
-        </tr>
-        
-    </tbody>
-</table>
+<div class="container">
+    <table *ngIf="clients?.length > 0; else noClients" class="table table-striped">
+        <div class="card card-body">
+            <div class="row">
+                <div class="col sm 3"><h5>Name</h5></div>
+                <div class="col sm 3"><h5>Email</h5></div>
+                <div class="col sm 3"><h5>Phone</h5></div>
+                <div class="col sm 3"><h5>Balance</h5></div>
+
+            </div>
+        </div>
+        <div class="card" *ngFor="let client of clients; let i = index">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col sm 2"><h6>{{client.firstname}} {{client.lastname}}</h6></div>
+                    <div class="col sm 2"><h6>{{client.email}}</h6></div>
+                    <div class="col sm 2"><h6>{{client.phone}}</h6></div>
+                    <div class="col sm 2"><h6>{{client.balance | currency:"USD":"symbol"}}</h6></div>
+                    <div>
+                      <button class="btn btn-danger btn-sm" (click)="onDelete(client.id)"><i id="delete" class="fa fa-trash-o fa-2x"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </table>
+
+</div>
 
 <ng-template #noClients>
     <hr>

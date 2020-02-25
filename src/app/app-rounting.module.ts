@@ -11,6 +11,7 @@ import { ClientsComponent } from "./components/clients/clients.component";
 import { AddClientComponent } from "./components/add-client/add-client.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { SettingsComponent } from "./components/settings/settings.component";
+import { ClientDetailsComponent } from "./components/client-details/client-details.component";
 
 const routes : Routes = [
   {path : '', component:DashboardComponent, canActivate: [AuthGuard]},
@@ -19,6 +20,7 @@ const routes : Routes = [
   {path : 'clients', component:ClientsComponent,canActivate: [AuthGuard]},
   {path : 'add', component:AddClientComponent ,canActivate: [AuthGuard]},
   {path : 'setting', component:SettingsComponent,canActivate: [AuthGuard]},
+  {path : 'details', component:ClientDetailsComponent,canActivate: [AuthGuard]},
   {path : '**', component:NotFoundComponent,canActivate: [AuthGuard]}
 ];
 
@@ -28,7 +30,7 @@ const routes : Routes = [
   exports : [RouterModule],
   imports: [
     RouterModule.forRoot(routes)
-    
+
   ]
 })
 export class AppRountingModule { }

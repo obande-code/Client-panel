@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Client } from "../file/Client";
 import { map } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,19 +16,23 @@ export class BambiService {
 
 
 
-  constructor( private afs : AngularFirestore) {
+  constructor( private afs : AngularFirestore,
+               private firestore : AngularFirestore) {
     this.clientCollection = this.afs.collection('client', ref => ref.orderBy(
       'lastname', 'asc'));
   }
+  addClient(client: Client): void {
+    this.clientCollection.add(client);
+  }
 
   getClients() : Observable<Client[]> {
-    return this.clientCollection.snapshotChanges().pipe(map(actions => {       
+    return this.clientCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Client;
         data.id = a.payload.doc.id;
         return data;
       });
-    }));
+    });
   }
   getClient(id : string) : Observable<Client>{
     this.clientdoc = this.afs.doc<Client>(`clients`);
@@ -37,12 +42,15 @@ export class BambiService {
       }else{
         const data = action.payload.data() as Client;
         data.id = action.payload.id;
-        return data;  
+        return data;
       }
     });
     return this.client;
   }
   newClient(client : Client){
     this.clientCollection.add(client);
+  }
+  deleteClient(id : string){
+    this.firestore.doc('clients/' + id).delete();
   }
 }

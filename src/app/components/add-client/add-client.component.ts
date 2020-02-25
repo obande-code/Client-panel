@@ -3,15 +3,24 @@ import { Client } from "../../file/Client";
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { BambiService } from "../../file/bambi.service";
 import { Router, ActivatedRoute , Params } from "@angular/router";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import {  AngularFirestoreCollection ,   AngularFirestoreDocument, AngularFirestore } from "@angular/fire/firestore";
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-add-client',
   templateUrl: './add-client.component.html',
   styleUrls: ['./add-client.component.css']
-}) 
+})
 export class AddClientComponent implements OnInit {
-  
+
+ client : Client = {
+    firstname : '',
+    lastname: '',
+    email : '',
+    phone : '',
+    balance : 0
+}
   id : string;
-  client : Client;
   hasBalance : boolean = false;
   showBalanceUpdatedInput : boolean = false
   disableBalanceOnAdd : boolean = false;
@@ -29,6 +38,7 @@ export class AddClientComponent implements OnInit {
       this.client = client;
     })
   }
+
 
   onSubmit({value , valid} : {value:Client, valid:boolean}){
     if (this.disableBalanceOnAdd) {
